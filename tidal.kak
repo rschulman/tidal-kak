@@ -9,9 +9,9 @@ define-command -docstring %{Start the TidalCycles server} \
         	printf %s\\n "set-option buffer tidal_tmp_dir ${dir}"
     	}
 	evaluate-commands %sh{
-    		dir="$kak_opt_tidal_tmp_dir"
-		$(
-			ghci < ${dir}/stdin > ${dir}/stdout 
+    		dir=${kak_opt_tidal_tmp_dir}
+		(
+			ghci < "${dir}"/stdin > "${dir}"/stdout 
 		) > /dev/null 2>&1 < /dev/null &
 	}
 	}
