@@ -40,7 +40,7 @@ define-command -docstring %{Start the TidalCycles server} \
 define-command -hidden \
 	tidal-setup %{
     		nop %sh{
-        		cat ${kak_opt_plug_install_dir}/tidal-kak/BootTidal.hs > ${dir}/stdin
+        		cat ${kak_opt_plug_install_dir}/tidal-kak/BootTidal.hs > ${kak_opt_tidal_tmp_dir}/stdin
     		}
 	}
 
@@ -64,7 +64,7 @@ define-command -docstring %{Send the current selection to the TidalCycles server
         	tidal-send-line %< :} >
 	}
 
-hook -once -always buffer BufClose \.tidal %{
+hook -once -always global BufClose \.tidal %{
     tidal-send-line %< exit >
 }
 
